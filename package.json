@@ -3,7 +3,9 @@
   "description": "Source data from Atlassian (JIRA, Confluence) in an efficient and scalable way.",
   "author": "Tobias Strebitzer <tobias.strebitzer@magloft.com>",
   "version": "3.0.0-next.0",
-  "bugs": { "url": "https://github.com/magloft/gatsby-source-atlassian/issues" },
+  "bugs": {
+    "url": "https://github.com/magloft/gatsby-source-atlassian/issues"
+  },
   "homepage": "https://github.com/magloft/gatsby-source-atlassian/tree/master#readme",
   "keywords": [
     "gatsby",
@@ -15,19 +17,24 @@
     "confluence"
   ],
   "license": "MIT",
-  "repository": { "type": "git", "url": "https://github.com/magloft/gatsby-source-atlassian.git" },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/magloft/gatsby-source-atlassian.git"
+  },
   "scripts": {
     "prepack": "yarn build",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "build": "rimraf dist; babel src --out-dir dist --extensions '.ts,.js' --source-maps",
-    "watch": "yarn build; babel -w src --out-dir dist --verbose --extensions '.ts,.js' --source-maps"
+    "watch": "yarn build; babel -w src --out-dir dist --verbose --extensions '.ts,.js' --source-maps",
+    "example:build": "cd example/; yarn; gatsby build --prefix-paths",
+    "example:deploy": "yarn example:build; gh-pages -d example/public"
   },
   "engines": {
     "node": ">=12.13.0"
   },
   "peerDependencies": {
-    "gatsby": "^3.0.0-next.0",
     "gatsby-source-filesystem": "^3.0.0-next.0",
+    "gatsby": "^3.0.0-next.0",
     "gatsby-plugin-sharp": "^3.0.0-next.0",
     "gatsby-transformer-sharp": "^3.0.0-next.0"
   },
@@ -59,6 +66,10 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.24.0",
     "gatsby": "^3.9.1",
+    "gatsby-plugin-sharp": "^3.0.0-next.0",
+    "gatsby-source-filesystem": "^3.0.0-next.0",
+    "gatsby-transformer-sharp": "^3.0.0-next.0",
+    "gh-pages": "^3.2.3",
     "rimraf": "^3.0.2",
     "typescript": "^4.3.5"
   }
