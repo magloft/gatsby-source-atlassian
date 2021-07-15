@@ -3,8 +3,9 @@ import { Model, ModelInterface } from './Model'
 
 export class JiraIssue extends Model<JiraIssueData> implements ModelInterface {
   get id() { return this.data.id }
-  get fields() { return ['summary', 'created', 'updated', 'labels', 'progress', 'votes', 'description', 'self'] }
+  get fields() { return ['key', 'summary', 'created', 'updated', 'labels', 'progress', 'votes', 'description', 'self'] }
 
+  get key() { return this.data.key }
   get summary() { return this.data.fields.summary }
   get created() { return new Date(this.data.fields.created) }
   get updated() { return new Date(this.data.fields.updated) }
