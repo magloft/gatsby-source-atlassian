@@ -17,7 +17,7 @@
   "license": "MIT",
   "repository": { "type": "git", "url": "https://github.com/magloft/gatsby-source-atlassian.git" },
   "scripts": {
-    "prepare": "yarn build",
+    "prepack": "yarn build",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "build": "rimraf dist; babel src --out-dir dist --extensions '.ts,.js' --source-maps",
     "watch": "yarn build; babel -w src --out-dir dist --verbose --extensions '.ts,.js' --source-maps"
