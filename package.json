@@ -2,7 +2,7 @@
   "name": "gatsby-source-atlassian",
   "description": "Source data from Atlassian (JIRA, Confluence) in an efficient and scalable way.",
   "author": "Tobias Strebitzer <tobias.strebitzer@magloft.com>",
-  "version": "3.0.0-next.0",
+  "version": "3.0.0-next.1",
   "bugs": {
     "url": "https://github.com/magloft/gatsby-source-atlassian/issues"
   },
@@ -33,9 +33,9 @@
     "node": ">=12.13.0"
   },
   "peerDependencies": {
-    "gatsby-source-filesystem": "^3.0.0-next.0",
     "gatsby": "^3.0.0-next.0",
     "gatsby-plugin-sharp": "^3.0.0-next.0",
+    "gatsby-source-filesystem": "^3.0.0-next.0",
     "gatsby-transformer-sharp": "^3.0.0-next.0"
   },
   "dependencies": {
