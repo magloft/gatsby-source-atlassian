@@ -2,7 +2,7 @@
   "name": "gatsby-source-atlassian",
   "description": "Source data from Atlassian (JIRA, Confluence) in an efficient and scalable way.",
   "author": "Tobias Strebitzer <tobias.strebitzer@magloft.com>",
-  "version": "4.11.0",
+  "version": "4.11.1",
   "bugs": {
     "url": "https://github.com/magloft/gatsby-source-atlassian/issues"
   },
