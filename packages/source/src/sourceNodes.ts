@@ -1,4 +1,5 @@
 import { SourceNodesArgs } from 'gatsby'
+import { createRemoteFileNode } from 'gatsby-source-filesystem'
 import { Cache } from '~/lib/Cache'
 import { CacheAdapterGatsby } from '~/lib/CacheAdapter/CacheAdapterGatsby'
 import { CacheAdapterPersist } from '~/lib/CacheAdapter/CacheAdapterPersist'
@@ -15,6 +16,32 @@ import { PluginOptions } from '~/types/PluginOptions'
 export const CacheAdapterMap = {
   'gatsby': CacheAdapterGatsby,
   'persist': CacheAdapterPersist
+}
+
+const urlMap = new Map<string, string>()
+
+async function createRemoteFileNodeId(args: SourceNodesArgs, host: string, url: string, parentNodeId: string) {
+  if (!url || url === `https://${host}/`) { return null }
+  if (urlMap.has(url)) {
+    debugger
+    return urlMap.get(url)
+  }
+  const image = await createRemoteFileNode({
+    url,
+    parentNodeId,
+    store: args.store,
+    cache: args.cache,
+    createNode: args.actions.createNode,
+    createNodeId: args.createNodeId,
+    reporter: args.reporter
+  }).catch((error) => {
+    url
+    parentNodeId
+    debugger
+    return { id: null }
+  })
+  urlMap.set(url, image.id)
+  return image.id
 }
 
 export async function sourceNodes(args: SourceNodesArgs, { host, email, apiToken, projectId, cacheAdapter }: PluginOptions): Promise<void> {
@@ -45,6 +72,12 @@ export async function sourceNodes(args: SourceNodesArgs, { host, email, apiToken
   JiraStatus.link(statusList, 'issues', (status) => issues.filter((issue) => issue.statusId === status.id))
   JiraPriority.link(priorities, 'issues', (priority) => issues.filter((issue) => issue.priorityId === priority.id))
   JiraIssueType.link(issueTypes, 'issues', (issueType) => issues.filter((issue) => issue.issueTypeId === issueType.id))
+
+  // Link Images
+  await Promise.all(issueTypes.map(async (entry) => { entry.iconId = await createRemoteFileNodeId(args, host, entry.iconUrl, entry.gatsbyId) }))
+  await Promise.all(priorities.map(async (entry) => { entry.iconId = await createRemoteFileNodeId(args, host, entry.iconUrl, entry.gatsbyId) }))
+  await Promise.all(statusList.map(async (entry) => { entry.iconId = await createRemoteFileNodeId(args, host, entry.iconUrl, entry.gatsbyId) }))
+  await Promise.all(users.map(async (entry) => { entry.avatarId = await createRemoteFileNodeId(args, host, entry.avatarUrl, entry.gatsbyId) }))
 
   // Build Nodes
   for (const model of [...issueTypes, ...priorities, ...statusList, ...versions, ...issues, ...users]) {

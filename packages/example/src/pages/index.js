@@ -50,12 +50,12 @@ const IndexPage = (params) => {
                 </summary>
                 {version.issues.map((issue, index) => (
                   <div key={index} className="task">
-                    <div className="task-icon"><img src={issue.issueType.icon.url} alt={issue.issueType.name} /></div>
+                    <div className="task-icon">{issue.issueType.icon && <img src={issue.issueType.icon.url} alt={issue.issueType.name} />}</div>
                     <div className="task-key">{issue.key}</div>
                     <div className="task-summary">{issue.summary}</div>
                     <div className="task-status"><mark className={`status-${issue.status.jiraId}`}>{issue.status.name}</mark></div>
                     <div className="task-assignee">
-                      {issue.assignee && <GatsbyImage image={issue.assignee.avatar.childImageSharp.gatsbyImageData} alt={issue.assignee.displayName} />}
+                      {issue.assignee && issue.assignee.avatar && <GatsbyImage image={issue.assignee.avatar.childImageSharp.gatsbyImageData} alt={issue.assignee.displayName} />}
                     </div>
                   </div>
                 ))}

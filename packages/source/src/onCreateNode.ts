@@ -8,12 +8,12 @@ async function createImageNode({ node, cache, store, reporter, actions: { create
 }
 
 export async function onCreateNode(args: CreateNodeArgs) {
-  const { node } = args
-  switch (node.internal.type) {
-  case 'JiraIssueType': { node.icon = await createImageNode(args, node.iconUrl); break }
-  case 'JiraPriority': { node.icon = await createImageNode(args, node.iconUrl); break }
-  case 'JiraStatus': { node.icon = await createImageNode(args, node.iconUrl); break }
-  case 'JiraUser': { node.avatar = await createImageNode(args, node.avatarUrl); break }
-  default: { break }
-  }
+  // const { node } = args
+  // switch (node.internal.type) {
+  // case 'JiraIssueType': { node.icon = await createImageNode(args, node.iconUrl); break }
+  // case 'JiraPriority': { node.icon = await createImageNode(args, node.iconUrl); break }
+  // case 'JiraStatus': { node.icon = await createImageNode(args, node.iconUrl); break }
+  // case 'JiraUser': { node.avatar = await createImageNode(args, node.avatarUrl); break }
+  // default: { break }
+  // }
 }

@@ -5,8 +5,8 @@ export interface ModelNodeInput extends NodeInput {
 }
 
 export interface ModelInterface {
-  id: string
-  fields: string[]
+  id?: string
+  fields?: string[]
   gatsbyId: string
 }
 
@@ -64,5 +64,6 @@ export abstract class Model<D extends ModelData> implements ModelInterface {
       internal: { type: this.constructor.name, content: JSON.stringify(data), contentDigest: this.context.createContentDigest(data) }
     }
     this.context.createNode(node)
+    return node
   }
 }

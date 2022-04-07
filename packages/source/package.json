@@ -1,0 +1,50 @@
+{
+  "name": "gatsby-source-atlassian",
+  "description": "Source data from Atlassian (JIRA, Confluence) in an efficient and scalable way.",
+  "author": "Tobias Strebitzer <tobias.strebitzer@magloft.com>",
+  "version": "4.11.0",
+  "bugs": {
+    "url": "https://github.com/magloft/gatsby-source-atlassian/issues"
+  },
+  "homepage": "https://github.com/magloft/gatsby-source-atlassian/tree/master#readme",
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "gatsby-plugin-atlassian",
+    "gatsby-source-atlassian",
+    "atlassian",
+    "jira",
+    "confluence"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/magloft/gatsby-source-atlassian.git",
+    "directory": "packages/source"
+  },
+  "scripts": {
+    "prepack": "yarn build",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "build": "rimraf build; babel src --out-dir build --extensions '.ts,.js' --source-maps",
+    "watch": "yarn build; babel -w src --out-dir build --verbose --extensions '.ts,.js' --source-maps",
+    "example:build": "cd example/; yarn; gatsby build --prefix-paths",
+    "example:deploy": "yarn example:build; gh-pages -d example/public"
+  },
+  "engines": {
+    "node": ">=12.13.0"
+  },
+  "peerDependencies": {
+    "gatsby": "^4.11.0",
+    "gatsby-plugin-sharp": "^4.11.0",
+    "gatsby-source-filesystem": "^4.11.0",
+    "gatsby-transformer-sharp": "^4.11.0"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.14.0",
+    "fs-extra": "^9.0.1",
+    "jira.js": "^2.4.2",
+    "object-hash": "^2.2.0",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0"
+  }
+}

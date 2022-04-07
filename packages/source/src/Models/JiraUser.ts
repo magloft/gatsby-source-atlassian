@@ -4,7 +4,7 @@ import { Model } from './Model'
 
 export class JiraUser extends Model<JiraUserData> {
   get id() { return this.data.id }
-  get fields() { return ['accountType', 'accountId', 'emailAddress', 'displayName', 'avatarUrl', 'active', 'locale', 'timeZone', 'self'] }
+  get fields() { return ['accountType', 'accountId', 'emailAddress', 'displayName', 'avatarUrl', 'avatarId', 'active', 'locale', 'timeZone', 'self'] }
 
   get accountType() { return this.data.accountType }
   get accountId() { return this.data.accountId }
@@ -15,4 +15,6 @@ export class JiraUser extends Model<JiraUserData> {
   get locale() { return this.data.locale }
   get timeZone() { return this.data.timeZone }
   get self() { return this.data.self }
+
+  avatarId?: string
 }
